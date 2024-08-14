@@ -12,7 +12,7 @@ class DossierMedical(models.Model):
     groupeSanguin = models.TextField(max_length=10)
     
 class Patient(models.Model):
-    personnel = models.OneToOneField(Personnel, related_name='personnel', on_delete=models.CASCADE)
+    personnel = models.ForeignKey(Personnel, related_name='patients', on_delete=models.CASCADE)
     dossier = models.OneToOneField(DossierMedical, related_name='dossier', on_delete=models.CASCADE)
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
