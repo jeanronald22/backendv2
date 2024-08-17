@@ -35,3 +35,10 @@ class PatientSerializer(serializers.ModelSerializer):
             setattr(instance, attr, value)
         instance.save()
         return instance
+    
+class RendezVousSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RendezVous
+        fields = '__all__'
+        
+    
