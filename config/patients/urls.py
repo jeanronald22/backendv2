@@ -7,6 +7,7 @@ route = DefaultRouter()
 # enregistrement des route
 route.register(r'dossier-medical', DossierViewSet)
 route.register(r'liste-patients', PatientsViewSet)
+route.register(r'rendez-vous', RendezVousViewSet)
 
 urlpattern = [
     path('', include(route.urls))

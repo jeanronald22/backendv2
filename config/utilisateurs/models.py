@@ -19,7 +19,7 @@ class PersonelAdministratif(models.Model):
     isAdmin = models.BooleanField(default= False)
     
     def __str__(self):
-        return self.personnel.user.username
+        return self.personnel.__str__()
 
 class PersonnelMedical(models.Model):
     personnel = models.OneToOneField(Personnel, on_delete=models.CASCADE)

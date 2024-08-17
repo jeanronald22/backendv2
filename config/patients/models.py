@@ -1,5 +1,6 @@
+import datetime
 from django.db import models
-from utilisateurs.models import Personnel
+from utilisateurs.models import *
 
 # Create your models here.
 
@@ -25,6 +26,9 @@ class Patient(models.Model):
     taille = models.IntegerField()
     tension_art =  models.IntegerField()
     pouls = models.IntegerField()
+    
+    def __str__(self) -> str:
+        return self.nom
     
 class consultation(models.Model):
     dateConsultation = models.DateField(auto_now_add=True)
@@ -52,3 +56,14 @@ class Operation(models.Model):
     typeOperation = models.TextField(max_length=200)
     dateOperation = models.DateField()
     delaisDateOperation = models.DateField()
+
+
+# definition u model de rendez-vous
+
+class RendezVous(models.Model):
+    date_heure = models.DateTimeField(default=datetime.datetime.now)
+    actif = models.BooleanField(default=True)
+    datePriseRendezVous = models.DateField(auto_now=True)
+    motif = models.TextField(max_length=200)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="patientConcerner")
+    medecin = models.ForeignKey(PersonnelMedical, on_delete=models.CASCADE, related_name="medecinConcerner")
