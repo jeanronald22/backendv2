@@ -37,7 +37,6 @@ class PatientSerializer(serializers.ModelSerializer):
         return instance
     
 class RendezVousSerializer(serializers.ModelSerializer):
-    
     class Meta:
         model = RendezVous
         fields = '__all__'
