@@ -8,6 +8,12 @@ route = DefaultRouter()
 route.register(r'dossier-medical', DossierViewSet)
 route.register(r'liste-patients', PatientsViewSet)
 route.register(r'rendez-vous', RendezVousViewSet, basename="rendez-vous")
+route.register(r'consultation', ConsultationViewSet)
+route.register(r'prescription', PrescriptionViewSet)
+route.register(r'examen', ExamenViewSet)
+route.register(r'medicament', MedicamentViewSet)
+route.register(r'operation', OperationViewSet)
+route.register(r'diagnostic', DiagnosticViewSet)
 
 urlpattern = [
     path('', include(route.urls))
