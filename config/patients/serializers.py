@@ -40,5 +40,58 @@ class RendezVousSerializer(serializers.ModelSerializer):
     class Meta:
         model = RendezVous
         fields = '__all__'
+class OperationSerialiser(serializers.ModelSerializer):
+    class Meta:
+        model = Operation
+        fields = '__all__'
+class ExamenSerialiser(serializers.ModelSerializer):
+    class Meta:
+        model = Examen
+        fields = '__all__'
+
+class MedicamentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Medicament
+        fields = '__all__'
+class PrescriptionSerialiser(serializers.ModelSerializer):
+    operation = OperationSerialiser()
+    medicament = MedicamentSerializer()
+    examen = ExamenSerialiser()
+    class Meta:
+        model = Prescription
+        fields = '__all__' 
+
+class DiagnosticSerialiser(serializers.ModelSerializer):
+    class Meta:
+        model = Diagnostic
+        fields = '__all__'
+class ConsultationSerializer(serializers.ModelSerializer):
+    diagnostic = DiagnosticSerialiser()
+    class Meta:
+        model = Consultation
+        fields = '__all__'
         
-    
+    def create(self, validated_data):
+        # recuperation des donnee valider
+        diagnostic_data = validated_data.pop('diagnostic')
+        if diagnostic_data:
+            diagnostic = Diagnostic.objects.create(**diagnostic_data)
+        consultation = Consultation.objects.create(diagnostic=diagnostic, **validated_data)
+        return consultation
+             
+class PrescriptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Prescription
+        fields = '__all__'
+class ExamenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Examen
+        fields = '__all__'
+class MedicamentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Medicament
+        fields = '__all__'
+class OperationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Operation
+        fields = '__all__'

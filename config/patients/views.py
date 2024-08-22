@@ -20,4 +20,24 @@ class RendezVousViewSet(viewsets.ModelViewSet):
         if medecin_id is not None:
             queryset = queryset.filter(medecin_id=medecin_id)
         return queryset
-   
+  
+class DiagnosticViewSet(viewsets.ModelViewSet):
+    queryset = Diagnostic.objects.all()
+    serializer_class = DiagnosticSerialiser
+class ConsultationViewSet(viewsets.ModelViewSet):
+    queryset = Consultation.objects.all()
+    serializer_class = ConsultationSerializer
+    
+class PrescriptionViewSet(viewsets.ModelViewSet):
+    queryset = Prescription.objects.all()
+    serializer_class = PrescriptionSerializer
+
+class ExamenViewSet(viewsets.ModelViewSet):
+    queryset = Examen.objects.all()
+    serializer_class = ExamenSerializer
+class MedicamentViewSet(viewsets.ModelViewSet):
+    queryset = Medicament.objects.all()
+    serializer_class = MedicamentSerializer
+class OperationViewSet(viewsets.ModelViewSet):
+    queryset = Operation.objects.all()
+    serializer_class = OperationSerializer
