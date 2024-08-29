@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import *
 from rest_framework import viewsets
 from .serializers import *
+from rest_framework import generics
 
 # Create your views here.
 class DossierViewSet(viewsets.ModelViewSet):
@@ -15,11 +16,10 @@ class PatientsViewSet(viewsets.ModelViewSet):
 class RendezVousViewSet(viewsets.ModelViewSet):
     serializer_class = RendezVousSerializer
     def get_queryset(self):
-        queryset = RendezVous.objects.all()
-        medecin_id = self.request.query_params.get('medecin_id')
-        if medecin_id is not None:
-            queryset = queryset.filter(medecin_id=medecin_id)
-        return queryset
+        patient_id = self.request.query_params.get('patient')
+        if patient_id:
+            return RendezVous.objects.filter(patient=patient_id)
+        return RendezVous.objects.all()
   
 class DiagnosticViewSet(viewsets.ModelViewSet):
     queryset = Diagnostic.objects.all()

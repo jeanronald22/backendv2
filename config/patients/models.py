@@ -48,8 +48,6 @@ class Prescription(models.Model):
     medecin = models.ForeignKey(PersonnelMedical, on_delete=models.CASCADE)
     consultation = models.ForeignKey(Consultation, on_delete=models.CASCADE)
 
-
-
 class Examen(models.Model):
     typeExamen = models.CharField(max_length=100)
     consigne = models.TextField(blank=True, max_length=1000)
@@ -60,22 +58,14 @@ class Medicament(models.Model):
     nomMedicament = models.TextField(max_length=1000)
     duree = models.CharField(max_length=100)
     dosage = models.TextField(blank=True, max_length=100)
-    prescription = models.OneToOneField(Prescription, on_delete=models.CASCADE)
-
-    
+    prescription = models.OneToOneField(Prescription, on_delete=models.CASCADE)    
 class Operation(models.Model):
     typeOperation = models.TextField(max_length=200)
     dateOperation = models.DateField()
     delaisDateOperation = models.DateField() # delais pour effectuer l'operation
     prescription = models.OneToOneField(Prescription, on_delete=models.CASCADE)
     
-
-        
-
-# definition u model de rendez-vous
-
-
-    
+# definition u model de rendez-vous    
 class RendezVous(models.Model):
     date_heure = models.DateTimeField(default=datetime.datetime.now)
     actif = models.BooleanField(default=True)

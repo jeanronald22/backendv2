@@ -16,5 +16,6 @@ route.register(r'operation', OperationViewSet)
 route.register(r'diagnostic', DiagnosticViewSet)
 
 urlpattern = [
-    path('', include(route.urls))
+    path('', include(route.urls)),
+    # path('api/patient/rendez-vous/', RendezVousViewSet.as_view(), name='rendezvous-list'),
 ]

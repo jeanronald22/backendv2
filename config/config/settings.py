@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -81,7 +82,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),  # Durée de vie du token d'accès
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=100),  # Durée de vie du token d'accès
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # Durée de vie du token de rafraîchissement
     'ROTATE_REFRESH_TOKENS': True,  # Option pour faire tourner les tokens de rafraîchissement
     'BLACKLIST_AFTER_ROTATION': True,  # Option pour ajouter les tokens de rafraîchissement à une liste noire après rotation
